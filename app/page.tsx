@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const TEAMS = [
   { id: "CSK", label: "Chennai Super Kings" },
@@ -20,6 +20,16 @@ export default function Home() {
 
   const allSelected = selected.size === TEAMS.length;
   const someSelected = selected.size > 0 && !allSelected;
+
+  const { appleUrl, googleUrl } = useMemo(() => {
+    if (selected.size === 0) return { appleUrl: null, googleUrl: null };
+    const teams = Array.from(selected).join(",");
+    const webcalUrl = `webcal://${window.location.host}/api/calendar?teams=${teams}`;
+    return {
+      appleUrl: webcalUrl,
+      googleUrl: `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcalUrl)}`,
+    };
+  }, [selected]);
 
   function toggleAll() {
     if (allSelected) {
@@ -109,20 +119,24 @@ export default function Home() {
 
         {/* Subscribe Buttons */}
         <div className="flex flex-col gap-3">
-          <button
-            disabled={selected.size === 0}
-            className="w-full flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-xl transition-colors text-sm"
+          <a
+            href={appleUrl ?? undefined}
+            aria-disabled={!appleUrl}
+            className={`w-full flex items-center justify-center gap-2 bg-gray-900 text-white font-semibold py-3 px-4 rounded-xl transition-colors text-sm ${appleUrl ? "hover:bg-gray-700" : "opacity-40 pointer-events-none cursor-not-allowed"}`}
           >
             <AppleIcon />
             Subscribe on Apple Calendar
-          </button>
-          <button
-            disabled={selected.size === 0}
-            className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-xl transition-colors text-sm"
+          </a>
+          <a
+            href={googleUrl ?? undefined}
+            aria-disabled={!googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-full flex items-center justify-center gap-2 bg-indigo-600 text-white font-semibold py-3 px-4 rounded-xl transition-colors text-sm ${googleUrl ? "hover:bg-indigo-500" : "opacity-40 pointer-events-none cursor-not-allowed"}`}
           >
             <GoogleIcon />
             Subscribe on Google Calendar
-          </button>
+          </a>
         </div>
       </div>
     </main>
