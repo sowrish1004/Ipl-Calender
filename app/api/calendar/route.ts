@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 import path from "path";
 
 interface Match {
-  id: string;
+  id?: string;
   homeTeam: string;
   awayTeam: string;
   venue: string;
@@ -27,7 +27,7 @@ function buildICS(matches: Match[]): string {
 
       return [
         "BEGIN:VEVENT",
-        `UID:${match.id}@ipl-calendar-sync`,
+        `UID:${match.homeTeam}-${match.awayTeam}-${match.startTime}@iplsync`,
         `DTSTAMP:${now}`,
         `DTSTART:${dtStart}`,
         `DTEND:${dtEnd}`,
