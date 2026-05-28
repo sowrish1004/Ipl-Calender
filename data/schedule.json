@@ -70,5 +70,6 @@
   { "homeTeam": "MI", "awayTeam": "RR", "venue": "Wankhede Stadium, Mumbai", "startTime": "2026-05-24T10:00:00Z", "endTime": "2026-05-24T14:00:00Z" },
   { "homeTeam": "KKR", "awayTeam": "DC", "venue": "Eden Gardens, Kolkata", "startTime": "2026-05-24T14:00:00Z", "endTime": "2026-05-24T18:00:00Z" },
   { "homeTeam": "RCB", "awayTeam": "GT", "venue": "HPCA Stadium, Dharamshala", "startTime": "2026-05-26T14:00:00Z", "endTime": "2026-05-26T18:00:00Z" },
-  { "homeTeam": "SRH", "awayTeam": "RR", "venue": "Maharaja Yadavindra Singh International Cricket Stadium, New Chandigarh", "startTime": "2026-05-27T14:00:00Z", "endTime": "2026-05-27T18:00:00Z" }
+  { "homeTeam": "SRH", "awayTeam": "RR", "venue": "Maharaja Yadavindra Singh International Cricket Stadium, New Chandigarh", "startTime": "2026-05-27T14:00:00Z", "endTime": "2026-05-27T18:00:00Z" },
+  { "homeTeam": "GT", "awayTeam": "RR", "venue": "Maharaja Yadavindra Singh International Cricket Stadium, New Chandigarh", "startTime": "2026-05-29T14:00:00Z", "endTime": "2026-05-29T18:00:00Z" }
 ]
